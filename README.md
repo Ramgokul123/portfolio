@@ -1,38 +1,31 @@
 # Gokul Ramachandran — Portfolio
 
-Cinematic, AI-driven single-page portfolio. Self-contained (one HTML file), no build step, no dependencies. Photo embedded. Code is obfuscated + copy-protected.
+Cinematic, AI-driven single-page portfolio. Self-contained, no build step. Photo embedded, code obfuscated + copy-protected.
 
-**Live:** _add your Vercel URL here after deploy_
+**Live:** https://portfolio-six-sand-90.vercel.app/
 
-## Deploy to Vercel
+## Files
+- `index.html` — the whole site (one file)
+- `resume.pdf` — served by the site's "Résumé" buttons at `/resume.pdf`
+- `vercel.json`, `.gitignore`
+
+## Deploy / update
 ```bash
-git init
 git add .
-git commit -m "Portfolio site"
-git branch -M main
-git remote add origin https://github.com/Ramgokul123/portfolio.git
-git push -u origin main
+git commit -m "update site"
+git push
 ```
-Then vercel.com → **Add New → Project** → import repo → Framework **Other**, no build command, output `./` → **Deploy**.
-Every future `git push` auto-redeploys.
+Vercel auto-redeploys in ~30s.
 
-## Enable the contact form (easy — this part is NOT obfuscated)
-The form works out of the box via a mailto fallback. To receive real emails:
-1. Create a free form at https://formspree.io and copy the ID (the part after `/f/`).
-2. In `index.html`, find this readable line near the bottom:
-   `<script>window.SITE_CONFIG = { FORMSPREE_ID: "YOUR_FORMSPREE_ID" };</script>`
-3. Replace `YOUR_FORMSPREE_ID` with your ID. Commit & push — done.
+## Contact form
+Already connected to Formspree (ID `moevvqjy`) — messages go to your inbox.
+- First submission: Formspree emails you a one-time confirmation link — click it to activate delivery.
+- To change the address/ID later, edit the readable line near the bottom of `index.html`:
+  `<script>window.SITE_CONFIG = { FORMSPREE_ID: "moevvqjy" };</script>`
+- A hidden honeypot field blocks spam bots automatically.
 
-## Content protection (what's included)
-- Main JavaScript is **obfuscated** (unreadable).
-- **Right-click disabled**, and DevTools/View-Source shortcuts blocked (F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S).
-- **Text selection / copy / drag disabled** (form fields stay usable).
-- Anti-inspection (debugger) trap when DevTools is opened.
+## Update your resume later
+Replace `resume.pdf` in this folder with a new file of the same name, commit & push. The Résumé buttons will serve the new one.
 
-> Note: front-end code can never be 100% hidden — the browser must run it. These measures stop casual copying and inspection, not a determined developer. That's normal for every website.
-
-## Editing later
-- **Email / phone / résumé link / social links:** still plain text in `index.html` (search for them).
-- **Formspree ID:** the readable config line above.
-- **Colors:** CSS variables in `:root`.
-- The scrambled `_0x...` block is the obfuscated app logic — leave it as-is.
+## Content protection
+Obfuscated JS, right-click + DevTools shortcuts blocked, text-copy disabled (form fields still work). Note: front-end code can never be fully hidden — this deters casual copying only.
