@@ -1,20 +1,10 @@
 # Gokul Ramachandran — Portfolio
 
-A cinematic, AI-driven single-page portfolio. Self-contained (one HTML file), no build step, no dependencies. Your profile photo is already embedded.
+Cinematic, AI-driven single-page portfolio. Self-contained (one HTML file), no build step, no dependencies. Photo embedded. Code is obfuscated + copy-protected.
 
 **Live:** _add your Vercel URL here after deploy_
 
-## Features
-- Mouse-reactive neural-network canvas background
-- Cinematic scroll & reveal animations
-- Project showcase with detail modals
-- "Ask my AI" assistant (runs 100% in-browser — no API key/backend)
-- Working contact form (Formspree) with a mailto fallback
-- Fully responsive, dark neon theme
-
 ## Deploy to Vercel
-
-### Option A — Git (recommended)
 ```bash
 git init
 git add .
@@ -23,22 +13,26 @@ git branch -M main
 git remote add origin https://github.com/Ramgokul123/portfolio.git
 git push -u origin main
 ```
-Then: https://vercel.com → **Add New → Project** → import the repo → Framework Preset **Other**, no build command, output dir **`./`** → **Deploy**.
+Then vercel.com → **Add New → Project** → import repo → Framework **Other**, no build command, output `./` → **Deploy**.
+Every future `git push` auto-redeploys.
 
-### Option B — Vercel CLI
-```bash
-npm i -g vercel
-vercel --prod
-```
+## Enable the contact form (easy — this part is NOT obfuscated)
+The form works out of the box via a mailto fallback. To receive real emails:
+1. Create a free form at https://formspree.io and copy the ID (the part after `/f/`).
+2. In `index.html`, find this readable line near the bottom:
+   `<script>window.SITE_CONFIG = { FORMSPREE_ID: "YOUR_FORMSPREE_ID" };</script>`
+3. Replace `YOUR_FORMSPREE_ID` with your ID. Commit & push — done.
 
-## Enable the contact form (2 minutes)
-The form works out of the box via a **mailto fallback** (opens the visitor's email app). To receive messages as real emails instead:
-1. Sign up free at https://formspree.io and create a new form.
-2. Copy your form ID (looks like `xdorwkln`, the part after `/f/`).
-3. In `index.html`, find:  `const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';`
-4. Replace `YOUR_FORMSPREE_ID` with your ID. Commit & push — Vercel redeploys automatically.
+## Content protection (what's included)
+- Main JavaScript is **obfuscated** (unreadable).
+- **Right-click disabled**, and DevTools/View-Source shortcuts blocked (F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S).
+- **Text selection / copy / drag disabled** (form fields stay usable).
+- Anti-inspection (debugger) trap when DevTools is opened.
 
-## Customize
-- **Photo:** already embedded. To change it, replace the `<img src="data:image/jpeg;base64,…">` inside `<div class="inner" id="avatarInner">`.
-- **Résumé link:** search `powerdriveedm.com/resume/resume-gokul` and swap in your URL (or add `resume.pdf` to the repo and use `/resume.pdf`).
-- **Colors:** edit the CSS variables in `:root` at the top of the `<style>` block.
+> Note: front-end code can never be 100% hidden — the browser must run it. These measures stop casual copying and inspection, not a determined developer. That's normal for every website.
+
+## Editing later
+- **Email / phone / résumé link / social links:** still plain text in `index.html` (search for them).
+- **Formspree ID:** the readable config line above.
+- **Colors:** CSS variables in `:root`.
+- The scrambled `_0x...` block is the obfuscated app logic — leave it as-is.
